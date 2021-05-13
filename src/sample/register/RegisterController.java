@@ -1,18 +1,26 @@
 package sample.register;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
-import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteCollection;
+import sample.BaseController;
+
+import java.io.IOException;
+import java.util.Locale;
 
 import static org.dizitart.no2.Document.createDocument;
+import static org.dizitart.no2.filters.Filters.eq;
 
 
-public class RegisterController {
+public class RegisterController extends BaseController {
 
     @FXML
     TextField usernameField;
@@ -42,17 +50,22 @@ public class RegisterController {
             return;
         }
 
+        Cursor cursor = db.getCollection("users").find(eq("username", "aaa"));
+        for (Document document : cursor) {
+            String username = (String) document.get("username");
+            if(username.equalsIgnoreCase(usernameField.getText())){
+                userNameLabel.setText("user already exists");
+                return;
+            }
+        }
+
+
         if (passwordField.getText().equals(repeatPasswordField.getText())) {
             passwordLabel.setText("");
             repeatPasswordLabel.setText("");
 
             String userName = usernameField.getText();
             String password = passwordField.getText();
-
-            Nitrite db = Nitrite.builder()
-                    .compressed()
-                    .filePath("db/book.db")
-                    .openOrCreate("user", "password");
 
             // Create a Nitrite Collection
             NitriteCollection collection = db.getCollection("users");
@@ -65,6 +78,13 @@ public class RegisterController {
         } else {
             passwordLabel.setText("Password does not match");
             repeatPasswordLabel.setText("Repeat Password does not match");
+        }
+
+        ((Node) actionEvent.getSource()).getScene().getWindow().hide();
+        try {
+            loadWindow("../login/login.fxml", "Login");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

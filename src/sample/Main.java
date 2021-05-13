@@ -1,9 +1,12 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Nitrite;
@@ -26,20 +29,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-
-        Nitrite db = Nitrite.builder()
-                .compressed()
-                .filePath("db/book.db")
-                .openOrCreate("user", "password");
-
-        // Create a Nitrite Collection
-        NitriteCollection collection = db.getCollection("users");
-        Document doc = createDocument("username", "Ana")
-                .put("password", "password");
-
-        // insert the document
-        collection.insert(doc);
-
         launch(args);
     }
 }

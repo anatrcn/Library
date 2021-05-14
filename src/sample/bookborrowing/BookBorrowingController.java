@@ -3,6 +3,7 @@ package sample.bookborrowing;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
@@ -13,11 +14,10 @@ import org.dizitart.no2.Document;
 import sample.BaseController;
 import sample.model.Book;
 
-public class BookBorrowingController extends BaseController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    Button loadBooks;
-
+public class BookBorrowingController extends BaseController implements Initializable {
     @FXML
     TableView<Book> bookTableView;
 
@@ -32,8 +32,8 @@ public class BookBorrowingController extends BaseController {
 
     public ObservableList<Book> list = FXCollections.observableArrayList();
 
-
-    public void initTable() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         System.out.println("text");
         Cursor cursor = getBookCursor();
 

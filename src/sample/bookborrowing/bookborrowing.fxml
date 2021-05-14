@@ -22,6 +22,5 @@
               </columns>
             </TableView>
          </children></VBox>
-      <Button fx:id="loadBooks" layoutX="282.0" layoutY="370.0" mnemonicParsing="false" onAction="#initTable" text="load books" />
    </children>
 </AnchorPane>

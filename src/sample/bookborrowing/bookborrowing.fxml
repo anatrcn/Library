@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.bookborrowing.BookBorrowingController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="419.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.bookborrowing.BookBorrowingController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="356.0" prefWidth="594.0">
+         <children>
+            <Label contentDisplay="CENTER" text="Book List">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <TableView prefHeight="287.0" prefWidth="594.0">
+              <columns>
+                  <TableColumn prefWidth="68.0" text="id" />
+                <TableColumn prefWidth="209.0" text="Title" />
+                <TableColumn prefWidth="177.0" text="Author" />
+                  <TableColumn prefWidth="138.0" text="borrowed" />
+              </columns>
+            </TableView>
+         </children></VBox>
+      <Button fx:id="initTable" layoutX="282.0" layoutY="370.0" mnemonicParsing="false" text="load books" />
+   </children>
 </AnchorPane>

@@ -41,7 +41,7 @@ public class BaseController {
                 .filePath("db/book.db")
                 .openOrCreate("user", "password");
 
-        // Create a Nitrite Collection
+        /*// Create a Nitrite Collection
         NitriteCollection collection = db.getCollection("users");
         Document doc = createDocument("username", "Ana").put("password", "password");
 
@@ -59,7 +59,7 @@ public class BaseController {
         collection2.insert(book1);
         collection2.insert(book2);
         collection2.insert(book3);
-        collection2.insert(book4);
+        collection2.insert(book4);*/
 
         BaseController.db = db;
     }

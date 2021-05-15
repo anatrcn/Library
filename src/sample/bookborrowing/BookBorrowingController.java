@@ -17,6 +17,9 @@ import sample.BaseController;
 import sample.model.Book;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static sample.login.LoginController.loggedUser;
@@ -43,6 +46,10 @@ public class BookBorrowingController extends BaseController implements Initializ
     private Button returnBook;
     @FXML
     private Button borrowBook;
+    @FXML
+    private Label errorDate;
+    @FXML
+    private Label errorFine;
 
     public ObservableList<Book> list = FXCollections.observableArrayList();
 
@@ -84,24 +91,40 @@ public class BookBorrowingController extends BaseController implements Initializ
     @FXML
     public void returnBook() {
         String borrowedBookUser = bookTableView.getSelectionModel().getSelectedItem().getBorrowed();
-        String returnBookDate = bookTableView.getSelectionModel().getSelectedItem().getReturnDate();
 
-        int id = bookTableView.getSelectionModel().getSelectedItem().getId();
-        bookTableView.getSelectionModel().getSelectedItem().setBorrowed("not borrowed");
-        db.getCollection("books").update(eq("id", id), createDocument("borrowed", "not borrowed"));
+        if (borrowedBookUser.equals(loggedUser.getUsername())) {
+            int id = bookTableView.getSelectionModel().getSelectedItem().getId();
+            bookTableView.getSelectionModel().getSelectedItem().setBorrowed("not borrowed");
+            db.getCollection("books").update(eq("id", id), createDocument("borrowed", "not borrowed"));
 
-        bookTableView.refresh();
+            bookTableView.getSelectionModel().getSelectedItem().setReturnDate(new Date().toString());
+            bookTableView.refresh();
+        }
     }
 
     @FXML
     public void borrowBook() {
         String borrowedBookUser = bookTableView.getSelectionModel().getSelectedItem().getBorrowed();
-        bookTableView.getSelectionModel().getSelectedItem().setBorrowed(loggedUser.getUsername());
 
-        int id = bookTableView.getSelectionModel().getSelectedItem().getId();
-        db.getCollection("books").update(eq("id", id), createDocument("borrowed", loggedUser.getUsername()));
+        if (borrowedBookUser.equals("not borrowed") || borrowedBookUser.isEmpty()) {
+            String enteredDate = returnDateValue.getText();
 
-        bookTableView.refresh();
+            try {
+                new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss").parse(enteredDate);
+                bookTableView.getSelectionModel().getSelectedItem().setReturnDate(enteredDate);
+            } catch (ParseException e) {
+                errorDate.setText("Invalid Date");
+                return;
+            }
+
+            errorDate.setText("Valid Date");
+            bookTableView.getSelectionModel().getSelectedItem().setBorrowed(loggedUser.getUsername());
+
+            int id = bookTableView.getSelectionModel().getSelectedItem().getId();
+            db.getCollection("books").update(eq("id", id), createDocument("borrowed", loggedUser.getUsername()));
+
+            bookTableView.refresh();
+        }
+
     }
-
 }

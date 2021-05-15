@@ -105,10 +105,25 @@ public class BookBorrowingController extends BaseController implements Initializ
 
                 String pattern = "yyyy-MM-dd:hh:mm:ss";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                String date = simpleDateFormat.format(new Date());
-                db.getCollection("books").update(eq("id", id), createDocument("returnDate", date));
+                String currentDate = simpleDateFormat.format(new Date());
+                db.getCollection("books").update(eq("id", id), createDocument("returnDate", currentDate));
+                bookTableView.getSelectionModel().getSelectedItem().setReturnDate(currentDate);
 
-                bookTableView.getSelectionModel().getSelectedItem().setReturnDate(date);
+                String promisedDateString = bookTableView.getSelectionModel().getSelectedItem().getReturnDate();
+                try {
+                    Date promisedDate = simpleDateFormat.parse(promisedDateString);
+                    long promisedMills = promisedDate.getTime();
+                    long currentDateMillis = new Date().getTime();
+
+                    if(currentDateMillis > promisedMills){
+                        double totalFineVal = Double.parseDouble(totalFine.getText());
+                        totalFine.setText(String.valueOf(totalFineVal + 0.1));
+                        db.getCollection("users").update(eq("username", loggedUser), createDocument("totalFine", totalFineVal));
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 bookTableView.refresh();
             } else if (borrowedBookUser.equals("not borrowed")) {
                 errorDate.setText("Cannot return this book");

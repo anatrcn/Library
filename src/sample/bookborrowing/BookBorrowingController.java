@@ -4,11 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import sample.BaseController;
@@ -29,12 +28,13 @@ public class BookBorrowingController extends BaseController implements Initializ
     private TableColumn<Book, String> author;
     @FXML
     private TableColumn<Book, String> borrowed;
+    @FXML
+    private TableColumn<Book, String> returnDate;
 
     public ObservableList<Book> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("text");
         Cursor cursor = getBookCursor();
 
         for (Document document : cursor) {
@@ -42,8 +42,11 @@ public class BookBorrowingController extends BaseController implements Initializ
             String title = (String) document.get("title");
             String author = (String) document.get("author");
             String borrowed = (String) document.get("borrowed");
+            String time = (String) document.get("time");
 
-            Book book = new Book(id, title, author, borrowed);
+            //db.getCollection("books").remove(document);
+
+            Book book = new Book(id, title, author, borrowed, time);
             list.add(book);
         }
 
@@ -51,7 +54,17 @@ public class BookBorrowingController extends BaseController implements Initializ
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         author.setCellValueFactory(new PropertyValueFactory<>("author"));
         borrowed.setCellValueFactory(new PropertyValueFactory<>("borrowed"));
+        returnDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         bookTableView.setItems(list);
+    }
+
+    @FXML
+    public void clickItem() {
+           /* System.out.println(bookTableView.getSelectionModel().getSelectedItem().getId());
+            System.out.println(bookTableView.getSelectionModel().getSelectedItem().getAuthor());
+            System.out.println(bookTableView.getSelectionModel().getSelectedItem().getTitle());*/
+
+        borrowed.setText("borrowed");
 
     }
 

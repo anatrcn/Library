@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import sample.BaseController;
+import sample.model.User;
 
 import java.io.IOException;
 
@@ -21,6 +22,8 @@ public class LoginController extends BaseController {
     @FXML
     Label errorField;
 
+    public static User loggedUser;
+
 
     public void goToRegisterScreen(ActionEvent actionEvent) {
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();
@@ -32,13 +35,20 @@ public class LoginController extends BaseController {
     }
 
     public void login(ActionEvent actionEvent) {
+        /*Cursor cursor = getAllUsersCursor();
+        for (Document document : cursor) {
+            db.getCollection("users").remove(document);
+        }*/
         Cursor cursor = getUserCursor(usernameLogin.getText());
 
         for (Document document : cursor) {
+
             String username = (String) document.get("username");
             if (username.equalsIgnoreCase(usernameLogin.getText())) {
                 ((Node) actionEvent.getSource()).getScene().getWindow().hide();
                 try {
+                    double totalFine = (double) document.get("totalFine");
+                    loggedUser = new User(usernameLogin.getText(), totalFine);
                     loadWindow("../bookborrowing/bookborrowing.fxml", "Welcome " + usernameLogin.getText() + " to Book Borrowing");
                 } catch (IOException e) {
                     e.printStackTrace();

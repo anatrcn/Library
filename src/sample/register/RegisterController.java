@@ -53,7 +53,7 @@ public class RegisterController extends BaseController {
         Cursor cursor = getUserCursor(usernameField.getText());
         for (Document document : cursor) {
             String username = (String) document.get("username");
-            if(username.equalsIgnoreCase(usernameField.getText())){
+            if (username.equalsIgnoreCase(usernameField.getText())) {
                 userNameLabel.setText("user already exists");
                 return;
             }
@@ -70,7 +70,7 @@ public class RegisterController extends BaseController {
             // Create a Nitrite Collection
             NitriteCollection collection = db.getCollection("users");
             Document doc = createDocument("username", userName)
-                    .put("password", password);
+                    .put("password", password).put("totalFine", 0.0);
 
             // insert the document
             collection.insert(doc);

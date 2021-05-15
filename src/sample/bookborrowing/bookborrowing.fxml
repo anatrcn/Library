@@ -34,7 +34,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField alignment="CENTER" prefHeight="14.0" prefWidth="408.0" promptText="Enter the date until you want to borrow the book">
+                  <TextField fx:id="returnDateValue" alignment="CENTER" prefHeight="14.0" prefWidth="408.0" promptText="Date until you want to borrow the book yyyy-mm-dd:hh:mm:ss">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -42,17 +42,16 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Borrow Book" GridPane.columnIndex="1">
+                  <Label fx:id="totalFine" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="241.0" text="-1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin></Label>
+                  <Button fx:id="borrowBook" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#borrowBook" text="Borrow Book" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>
                   </Button>
-                  <TextField alignment="CENTER" promptText="Total Fine Payed" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Return Book" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Button fx:id="returnBook" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#returnBook" prefHeight="27.0" prefWidth="88.0" text="Return Book" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </GridPane.margin>

@@ -35,14 +35,13 @@ public class LoginController extends BaseController {
     }
 
     public void login(ActionEvent actionEvent) {
-        /*Cursor cursor = getAllUsersCursor();
-        for (Document document : cursor) {
+        /*Cursor cursorRemove = getAllUsersCursor();
+        for (Document document : cursorRemove) {
             db.getCollection("users").remove(document);
         }*/
         Cursor cursor = getUserCursor(usernameLogin.getText());
 
         for (Document document : cursor) {
-
             String username = (String) document.get("username");
             if (username.equalsIgnoreCase(usernameLogin.getText())) {
                 ((Node) actionEvent.getSource()).getScene().getWindow().hide();

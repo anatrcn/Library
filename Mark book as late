@@ -1,0 +1,33 @@
+import java.util.*;
+import javax.swing.JOptionPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import org.dizitart.no2.Document;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteCollection;
+
+
+	public ObservableList<Book> list = FXCollections.observableArrayList();
+	late.setCellValueFactory(new PropertyValueFactory<>("late"));
+
+
+@FXML
+    public void clickItem() {
+
+        System.out.println(bookTableView.getSelectionModel().getSelectedItem().getId());
+        System.out.println(bookTableView.getSelectionModel().getSelectedItem().getAuthor());
+        System.out.println(bookTableView.getSelectionModel().getSelectedItem().getTitle());
+        System.out.println(bookTableView.getSelectionModel().getSelectedItem().getPages());		
+        bookTableView.refresh();
+    }
+	
+	public void MarkLate() {
+        String lateBookUser = bookTableView.getSelectionModel().getSelectedItem().getLate();
+        bookTableView.getSelectionModel().getSelectedItem().setLate(user.getUsername());
+
+        late.setText("late");
+        int id = bookTableView.getSelectionModel().getSelectedItem().getId();
+        db.getCollection("books").update(eq("status", status), createDocument("late", user.getUsername()));
+
+        bookTableView.refresh();
+		}

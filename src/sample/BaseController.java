@@ -3,8 +3,6 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.dizitart.no2.Cursor;
@@ -13,8 +11,6 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteCollection;
 
 import java.io.IOException;
-import java.util.Objects;
-
 import static org.dizitart.no2.Document.createDocument;
 import static org.dizitart.no2.filters.Filters.eq;
 
@@ -41,19 +37,20 @@ public class BaseController {
                 .filePath("db/book.db")
                 .openOrCreate("user", "password");
 
-        /*// Create a Nitrite Collection
+        // Create a Nitrite Collection
+        /*
         NitriteCollection collection = db.getCollection("users");
-        Document doc = createDocument("username", "Ana").put("password", "password");
+        Document doc = createDocument("username", "Ana").put("password", "password").put("totalFine", 0.0);
 
         // insert the document
         collection.insert(doc);
 
         // Create a Nitrite Collection
         NitriteCollection collection2 = db.getCollection("books");
-        Document book1 = createDocument("id",1).put("title", "Ion").put("author", "Liviu Rebreanu").put("borrowed", "null").put("returnDate","");
-        Document book2 = createDocument("id",2).put("title", "Moara cu Noroc").put("author", "Ioan Slavici").put("borrowed", "null").put("returnDate","");
-        Document book3 = createDocument("id",3).put("title", "Luceafarul").put("author", "Mihai Eminescu").put("borrowed", "null").put("returnDate","");
-        Document book4 = createDocument("id",4).put("title", "Romeo si Julieta").put("author", "William Shakespeare").put("borrowed", "null").put("returnDate","");
+        Document book1 = createDocument("id",1).put("title", "Ion").put("author", "Liviu Rebreanu").put("borrowed", "").put("borrowedDate","").put("returnDate","");
+        Document book2 = createDocument("id",2).put("title", "Moara cu Noroc").put("author", "Ioan Slavici").put("borrowed", "").put("borrowedDate","").put("returnDate","");
+        Document book3 = createDocument("id",3).put("title", "Luceafarul").put("author", "Mihai Eminescu").put("borrowed", "").put("borrowedDate","").put("returnDate","");
+        Document book4 = createDocument("id",4).put("title", "Romeo si Julieta").put("author", "William Shakespeare").put("borrowed", "").put("borrowedDate","").put("returnDate","");
 
         // insert the books
         collection2.insert(book1);
@@ -66,6 +63,11 @@ public class BaseController {
 
     public Cursor getUserCursor(String field) {
         Cursor cursor = db.getCollection("users").find(eq("username", field));
+        return cursor;
+    }
+
+    public Cursor getAllUsersCursor() {
+        Cursor cursor = db.getCollection("users").find();
         return cursor;
     }
 

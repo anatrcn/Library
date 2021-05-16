@@ -3,20 +3,20 @@ package sample.model;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.util.Objects;
-
 public class Book {
     private SimpleIntegerProperty id;
     private SimpleStringProperty title;
     private SimpleStringProperty author;
     private SimpleStringProperty borrowed;
+    private SimpleStringProperty borrowedDate;
     private SimpleStringProperty returnDate;
 
-    public Book(int id, String title, String author, String borrowed, String returnDate) {
+    public Book(int id, String title, String author, String borrowed,String borrowedDate, String returnDate) {
         this.id = new SimpleIntegerProperty(id);
         this.title = new SimpleStringProperty(title);
         this.author = new SimpleStringProperty(author);
         this.borrowed = new SimpleStringProperty(borrowed);
+        this.borrowedDate = new SimpleStringProperty(borrowedDate);
         this.returnDate = new SimpleStringProperty(returnDate);
     }
 
@@ -58,5 +58,17 @@ public class Book {
 
     public void setReturnDate(String returnDate) {
         this.returnDate.set(returnDate);
+    }
+
+    public String getBorrowedDate() {
+        return borrowedDate.get();
+    }
+
+    public SimpleStringProperty borrowedDateProperty() {
+        return borrowedDate;
+    }
+
+    public void setBorrowedDate(String borrowedDate) {
+        this.borrowedDate.set(borrowedDate);
     }
 }

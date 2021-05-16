@@ -3,11 +3,11 @@ package sample.model;
 public class User {
     private String username;
     private String password;
-    private double totalFinedPayed;
+    private double totalFine;
 
-    public User(String username, double totalFinedPayed) {
+    public User(String username, double totalFine) {
         this.username = username;
-        this.totalFinedPayed = totalFinedPayed;
+        this.totalFine = totalFine;
     }
 
     public String getUsername() {
@@ -26,11 +26,11 @@ public class User {
         this.password = password;
     }
 
-    public double getTotalFinedPayed() {
-        return totalFinedPayed;
+    public double getTotalFine() {
+        return totalFine;
     }
 
-    public void setTotalFinedPayed(double totalFinedPayed) {
-        this.totalFinedPayed = totalFinedPayed;
+    public void setTotalFine(double totalFine) {
+        this.totalFine = totalFine;
     }
 }

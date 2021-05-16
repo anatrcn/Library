@@ -8,19 +8,22 @@
    <children>
       <VBox alignment="CENTER" layoutX="101.0" layoutY="14.0" prefHeight="316.0" prefWidth="363.0">
          <children>
-            <TextField alignment="CENTER" promptText="Enter desired username">
+            <Label fx:id="userNameLabel" />
+            <TextField fx:id="usernameField" alignment="CENTER" promptText="Enter desired username">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin></TextField>
-            <PasswordField alignment="CENTER" promptText="Enter your password">
+            <Label fx:id="passwordLabel" />
+            <PasswordField fx:id="passwordField" alignment="CENTER" promptText="Enter your password">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin></PasswordField>
-            <PasswordField alignment="CENTER" promptText="Repeat password">
+            <Label fx:id="repeatPasswordLabel" alignment="CENTER_RIGHT" />
+            <PasswordField fx:id="repeatPasswordField" alignment="CENTER" promptText="Repeat password">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin></PasswordField>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Submit">
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registerUser" prefHeight="27.0" prefWidth="147.0" text="Submit">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>

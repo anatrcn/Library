@@ -115,7 +115,14 @@ public class BookBorrowingController extends BaseController implements Initializ
                     if(currentDateMillis > promisedMills){
                         double totalFineVal = Double.parseDouble(totalFine.getText());
                         totalFine.setText(String.valueOf(totalFineVal + 0.1));
-                        db.getCollection("users").update(eq("username", loggedUser), createDocument("totalFine", totalFineVal));
+                        db.getCollection("users").update(eq("username", loggedUser.getUsername()), createDocument("totalFine", totalFineVal));
+
+                        /*Cursor cursor = getUserCursor(loggedUser.getUsername());
+                        for (Document document : cursor){
+                            System.out.println(document.get("totalFine"));
+                            System.out.println(document.get("username"));
+                        }*/
+
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();

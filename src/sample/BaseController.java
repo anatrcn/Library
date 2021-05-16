@@ -40,10 +40,10 @@ public class BaseController {
 
         // Create a Nitrite Collection
         NitriteCollection collection = db.getCollection("users");
-        Document doc = createDocument("username", "Ana").put("password", "password").put("totalFine", 0.0);
+        //Document doc = createDocument("username", "Ana").put("password", "password").put("totalFine", 0.0);
 
         // insert the document
-        collection.insert(doc);
+        //collection.insert(doc);
 
         // Create a Nitrite Collection
         //initialDBPopulation(db);

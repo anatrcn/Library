@@ -39,12 +39,24 @@ public class BookBorrowingControllerTest {
     }
 
     @Test
-    public void borrowBookTest(FxRobot robot) {
+    public void borrowBookFailNoSelectedBookTest(FxRobot robot) {
         login(robot);
+
+        robot.clickOn("#borrowBook");
+        Label labelError = robot.lookup("#errorLabel").queryAs(Label.class);
+        String errorText = labelError.getText();
+
+        assertEquals("Select a book!", errorText);
     }
 
     @Test
-    public void borrowBookTest2(FxRobot robot) {
+    public void returnBookFailNoSelectedBookTest(FxRobot robot) {
         login(robot);
+
+        robot.clickOn("#returnBook");
+        Label labelError = robot.lookup("#errorLabel").queryAs(Label.class);
+        String errorText = labelError.getText();
+
+        assertEquals("Select a book!", errorText);
     }
 }

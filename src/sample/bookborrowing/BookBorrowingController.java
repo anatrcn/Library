@@ -104,7 +104,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String currentDate = simpleDateFormat.format(new Date());
                 db.getCollection("books").update(eq("id", id), createDocument("returnDate", currentDate));
-                bookTableView.getSelectionModel().getSelectedItem().setReturnDate(currentDate);
+
 
                 String promisedDateString = bookTableView.getSelectionModel().getSelectedItem().getReturnDate();
                 try {
@@ -120,7 +120,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
+                bookTableView.getSelectionModel().getSelectedItem().setReturnDate(currentDate);
                 bookTableView.refresh();
             } else if (borrowedBookUser.equals("not borrowed")) {
                 errorLabel.setText("Cannot return this book");

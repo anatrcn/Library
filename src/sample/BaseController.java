@@ -11,6 +11,7 @@ import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteCollection;
 
 import java.io.IOException;
+
 import static org.dizitart.no2.Document.createDocument;
 import static org.dizitart.no2.filters.Filters.eq;
 
@@ -38,7 +39,6 @@ public class BaseController {
                 .openOrCreate("user", "password");
 
         // Create a Nitrite Collection
-        /*
         NitriteCollection collection = db.getCollection("users");
         Document doc = createDocument("username", "Ana").put("password", "password").put("totalFine", 0.0);
 
@@ -46,6 +46,12 @@ public class BaseController {
         collection.insert(doc);
 
         // Create a Nitrite Collection
+        //initialDBPopulation(db);
+
+        BaseController.db = db;
+    }
+
+    private static void initialDBPopulation(Nitrite db) {
         NitriteCollection collection2 = db.getCollection("books");
         Document book1 = createDocument("id",1).put("title", "Ion").put("author", "Liviu Rebreanu").put("borrowed", "").put("borrowedDate","").put("returnDate","");
         Document book2 = createDocument("id",2).put("title", "Moara cu Noroc").put("author", "Ioan Slavici").put("borrowed", "").put("borrowedDate","").put("returnDate","");
@@ -56,9 +62,7 @@ public class BaseController {
         collection2.insert(book1);
         collection2.insert(book2);
         collection2.insert(book3);
-        collection2.insert(book4);*/
-
-        BaseController.db = db;
+        collection2.insert(book4);
     }
 
     public Cursor getUserCursor(String field) {

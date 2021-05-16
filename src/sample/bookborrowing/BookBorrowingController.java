@@ -100,7 +100,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 bookTableView.getSelectionModel().getSelectedItem().setBorrowed("not borrowed");
                 db.getCollection("books").update(eq("id", id), createDocument("borrowed", "not borrowed"));
 
-                String pattern = "yyyy-MM-dd:hh:mm:ss";
+                String pattern = "yyyy-MM-dd:HH:mm:ss";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String currentDate = simpleDateFormat.format(new Date());
                 db.getCollection("books").update(eq("id", id), createDocument("returnDate", currentDate));
@@ -140,7 +140,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 String enteredDate = returnDateValue.getText();
 
                 try {
-                    Date convertedDate = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss").parse(enteredDate);
+                    Date convertedDate = new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss").parse(enteredDate);
                     bookTableView.getSelectionModel().getSelectedItem().setReturnDate(enteredDate);
 
                     if (convertedDate.before(new Date())) {
@@ -155,7 +155,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 errorLabel.setText("Valid Date");
                 bookTableView.getSelectionModel().getSelectedItem().setBorrowed(loggedUser.getUsername());
 
-                String pattern = "yyyy-MM-dd:hh:mm:ss";
+                String pattern = "yyyy-MM-dd:HH:mm:ss";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String date = simpleDateFormat.format(new Date());
 

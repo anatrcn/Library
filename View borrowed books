@@ -1,0 +1,83 @@
+package test;
+import java.util.*;
+import javax.swing.JOptionPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import org.dizitart.no2.Document;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteCollection;
+
+
+private void initCol()
+{
+	nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+	idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+	authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
+	pagesCol.setCellValueFactory(new PropertyValueFactory<>("pages"));
+	statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+}
+
+private void loadData()
+{
+	DatabaseHandler handler = new DatabaseHandler();
+	String qu = "Select * from book";
+	ResultSet rs = handler.execQuery(qu);
+	try
+	{
+		while(rs.next())
+		{
+			if(this.getStatus = "borrowed")
+			{
+				String name = rs.getString("name");
+				String id = rs.getString("id");
+				String author = rs.getString("author");
+				String pages = rs.getString("pages");
+				String status = rs.getString("status");
+			}
+		}
+	}
+}
+
+class Book
+{
+	private SimpleStringPropriety name;
+	private SimpleStringPropriety id;
+	private SimpleStringPropriety author;
+	private SimpleStringPropriety pages;
+	private SimpleStringPropriety status;
+
+	public Book(String name, String id, String author, String pages, String status)
+	{
+		this.name = new SimpleStringPropriety(name);
+		this.id = new SimpleStringPropriety(id);
+		this.author = new SimpleStringPropriety(author);
+		this.pages = new SimpleStringPropriety(pages);
+		this.status = new SimpleStringPropriety(status);
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public String getID()
+	{
+		return id;
+	}
+	
+	public String getAuthor()
+	{
+		return author;
+	}
+	
+	public String getpages()
+	{
+		return pages;
+	}
+	
+	public String getStatus()
+	{
+		return status;
+	}
+		
+}

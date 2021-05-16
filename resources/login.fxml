@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.login.LoginController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="14.0" prefHeight="257.0" prefWidth="553.0">
+         <children>
+            <TextField fx:id="usernameLogin" alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Username">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </TextField>
+            <PasswordField fx:id="passwordLogin" alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Password">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </PasswordField>
+            <Button fx:id="btnLogin" maxWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="147.0" text="Login">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnRegister" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#goToRegisterScreen" prefHeight="27.0" prefWidth="147.0" text="Register" />
+         </children>
+      </VBox>
+      <Label fx:id="errorField" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="282.0" prefHeight="27.0" prefWidth="128.0" />
+   </children>
+</AnchorPane>

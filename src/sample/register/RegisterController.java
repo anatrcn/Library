@@ -1,10 +1,8 @@
 package sample.register;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,10 +12,8 @@ import org.dizitart.no2.NitriteCollection;
 import sample.BaseController;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import static org.dizitart.no2.Document.createDocument;
-import static org.dizitart.no2.filters.Filters.eq;
 
 
 public class RegisterController extends BaseController {
@@ -59,7 +55,6 @@ public class RegisterController extends BaseController {
             }
         }
 
-
         if (passwordField.getText().equals(repeatPasswordField.getText())) {
             passwordLabel.setText("");
             repeatPasswordLabel.setText("");
@@ -78,6 +73,7 @@ public class RegisterController extends BaseController {
         } else {
             passwordLabel.setText("Password does not match");
             repeatPasswordLabel.setText("Repeat Password does not match");
+            return;
         }
 
         ((Node) actionEvent.getSource()).getScene().getWindow().hide();

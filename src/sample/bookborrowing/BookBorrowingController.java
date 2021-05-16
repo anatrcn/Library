@@ -2,7 +2,6 @@ package sample.bookborrowing;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -49,9 +48,7 @@ public class BookBorrowingController extends BaseController implements Initializ
     @FXML
     private Button borrowBook;
     @FXML
-    private Label errorDate;
-    @FXML
-    private Label errorFine;
+    private Label errorLabel;
 
     public ObservableList<Book> list = FXCollections.observableArrayList();
 
@@ -94,7 +91,7 @@ public class BookBorrowingController extends BaseController implements Initializ
 
     @FXML
     public void returnBook() {
-        errorDate.setText("");
+        errorLabel.setText("");
         if (bookTableView.getSelectionModel().getSelectedItem() != null) {
             String borrowedBookUser = bookTableView.getSelectionModel().getSelectedItem().getBorrowed();
 
@@ -103,7 +100,7 @@ public class BookBorrowingController extends BaseController implements Initializ
                 bookTableView.getSelectionModel().getSelectedItem().setBorrowed("not borrowed");
                 db.getCollection("books").update(eq("id", id), createDocument("borrowed", "not borrowed"));
 
-                String pattern = "yyyy-MM-dd:hh:mm:ss";
+                String pattern = "yyyy-MM-dd:HH:mm:ss";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String currentDate = simpleDateFormat.format(new Date());
                 db.getCollection("books").update(eq("id", id), createDocument("returnDate", currentDate));
@@ -126,16 +123,16 @@ public class BookBorrowingController extends BaseController implements Initializ
 
                 bookTableView.refresh();
             } else if (borrowedBookUser.equals("not borrowed")) {
-                errorDate.setText("Cannot return this book");
+                errorLabel.setText("Cannot return this book");
             }
         } else {
-            errorDate.setText("Select a book!");
+            errorLabel.setText("Select a book!");
         }
     }
 
     @FXML
     public void borrowBook() {
-        errorDate.setText("");
+        errorLabel.setText("");
         if (bookTableView.getSelectionModel().getSelectedItem() != null) {
             String borrowedBookUser = bookTableView.getSelectionModel().getSelectedItem().getBorrowed();
 
@@ -143,22 +140,22 @@ public class BookBorrowingController extends BaseController implements Initializ
                 String enteredDate = returnDateValue.getText();
 
                 try {
-                    Date convertedDate = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss").parse(enteredDate);
+                    Date convertedDate = new SimpleDateFormat("yyyy-MM-dd:HH:mm:ss").parse(enteredDate);
                     bookTableView.getSelectionModel().getSelectedItem().setReturnDate(enteredDate);
 
                     if (convertedDate.before(new Date())) {
-                        errorDate.setText("Date must not be in the past");
+                        errorLabel.setText("Date must not be in the past");
                         return;
                     }
                 } catch (ParseException e) {
-                    errorDate.setText("Invalid Date");
+                    errorLabel.setText("Invalid Date");
                     return;
                 }
 
-                errorDate.setText("Valid Date");
+                errorLabel.setText("Valid Date");
                 bookTableView.getSelectionModel().getSelectedItem().setBorrowed(loggedUser.getUsername());
 
-                String pattern = "yyyy-MM-dd:hh:mm:ss";
+                String pattern = "yyyy-MM-dd:HH:mm:ss";
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
                 String date = simpleDateFormat.format(new Date());
 
@@ -169,10 +166,10 @@ public class BookBorrowingController extends BaseController implements Initializ
 
                 bookTableView.refresh();
             } else {
-                errorDate.setText("Book already borrowed");
+                errorLabel.setText("Book already borrowed");
             }
         } else {
-            errorDate.setText("Select a book!");
+            errorLabel.setText("Select a book!");
         }
     }
 }

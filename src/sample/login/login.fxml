@@ -26,5 +26,6 @@
             <Button fx:id="btnRegister" alignment="CENTER" maxWidth="-Infinity" mnemonicParsing="false" onAction="#goToRegisterScreen" prefHeight="27.0" prefWidth="147.0" text="Register" />
          </children>
       </VBox>
+      <Label fx:id="errorField" alignment="CENTER" contentDisplay="CENTER" layoutX="245.0" layoutY="282.0" prefHeight="27.0" prefWidth="128.0" />
    </children>
 </AnchorPane>

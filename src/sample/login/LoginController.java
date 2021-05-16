@@ -1,23 +1,16 @@
 package sample.login;
 
-import com.sun.javafx.css.Style;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import sample.BaseController;
 
 import java.io.IOException;
-
-import static org.dizitart.no2.filters.Filters.eq;
 
 public class LoginController extends BaseController {
 
@@ -25,6 +18,8 @@ public class LoginController extends BaseController {
     TextField usernameLogin;
     @FXML
     PasswordField passwordLogin;
+    @FXML
+    Label errorField;
 
 
     public void goToRegisterScreen(ActionEvent actionEvent) {
@@ -51,8 +46,7 @@ public class LoginController extends BaseController {
                 return;
             }
         }
-
-
+        errorField.setText("Login Failed!");
     }
 
 

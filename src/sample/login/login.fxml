@@ -8,17 +8,17 @@
    <children>
       <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="14.0" prefHeight="257.0" prefWidth="553.0">
          <children>
-            <TextField alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Username">
+            <TextField fx:id="usernameLogin" alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Username">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Password">
+            <PasswordField fx:id="passwordLogin" alignment="CENTER" maxWidth="-Infinity" prefHeight="35.0" prefWidth="300.0" promptText="Enter Password">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </PasswordField>
-            <Button fx:id="btnLogin" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="147.0" text="Login">
+            <Button fx:id="btnLogin" maxWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="147.0" text="Login">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>

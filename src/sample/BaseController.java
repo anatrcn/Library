@@ -3,8 +3,11 @@ package sample;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.dizitart.no2.Cursor;
 import org.dizitart.no2.Document;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteCollection;
@@ -12,6 +15,7 @@ import org.dizitart.no2.NitriteCollection;
 import java.io.IOException;
 
 import static org.dizitart.no2.Document.createDocument;
+import static org.dizitart.no2.filters.Filters.eq;
 
 public class BaseController {
 
@@ -45,6 +49,11 @@ public class BaseController {
         collection.insert(doc);
 
         BaseController.db = db;
+    }
+
+    public Cursor getUserCursor(String field){
+        Cursor cursor = db.getCollection("users").find(eq("username", field));
+        return cursor;
     }
 
 

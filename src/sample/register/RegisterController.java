@@ -50,7 +50,7 @@ public class RegisterController extends BaseController {
             return;
         }
 
-        Cursor cursor = db.getCollection("users").find(eq("username", "aaa"));
+        Cursor cursor = getUserCursor(usernameField.getText());
         for (Document document : cursor) {
             String username = (String) document.get("username");
             if(username.equalsIgnoreCase(usernameField.getText())){

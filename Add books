@@ -1,0 +1,48 @@
+package test;
+import java.util.*;
+import javax.swing.JOptionPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import org.dizitart.no2.Document;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteCollection;
+
+
+
+
+@FXML
+private void addBook(ActionEvent event)
+{
+	String bookID = id.getText();
+	String bookName = name.getText();
+	String bookAuthor = author.getText();
+	String bookPages = pages.getText();
+	String bookStatus = "alailable";
+	
+	if(bookID.isEmpty() || bookName.isEmpty() || bookAuthor.isEmpty() || bookPages.isEmpty())
+	{
+		Allert alert = new Alert(AlertType.ERROR);
+		alert.setHeaderText(null);
+		alert.setContextText("Please enter all fields");
+		alert.showAndWait();
+		return;
+	}
+	
+	String qu = "Insert information: " + bookID + ", " + bookName + ", " + bookAuthor + ", " + bookPages + " " + true;
+	System.out.println(qu);
+	if(database.Handler.execAction(qu))
+	{
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setHeaderText(null);
+		alert.setContextText("Success");
+		alert.showAndWait();
+	}
+	else
+	{
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setHeaderText(null);
+		alert.setContextText("Failed");
+		alert.showAndWait();
+	}
+	
+}

@@ -1,0 +1,30 @@
+public void edit()
+{
+	try
+	{
+		String bookID = id.getText();
+		String bookName = name.getText();
+		String bookAuthor = author.getText();
+		String bookPages = pages.getText();
+		String bookStatus = "available";
+		String qu = "Edit information: " + "Book ID = " + bookID + "Book Name = " + bookName + "Book Author = " + bookAuthor + "Number of pages = " + bookPages + " ";
+		
+		System.out.println(qu);
+		if(database.Handler.execAction(qu))
+		{
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setHeaderText(null);
+			alert.setContextText("Success");
+			alert.showAndWait();
+		}
+		else
+		{
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContextText("Failed");
+			alert.showAndWait();
+	  }
+
+	}
+  	catch (Exception e) {}
+}
